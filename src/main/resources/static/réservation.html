@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Réservation</title>
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap1.css"
+th:href="@{/css/bootstrap1.css}"/> 
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+
+
+
+
+</head>
+<body>
+
+<div layout:fragment="content">
+		<div class="col-md-6"> 
+		
+			<div class="panel panel-primary">
+				<div class="panel-heading"> Consultation les réservation</div>
+				<div class="panel-body">
+						
+						<form th:action="@{/consulterréservation}" methode="get">
+							<div>
+								<label> identifiant réservation: </label>
+								<input type="text" name="idre" th:value="${idre}"/>
+								<button type="submit" class="btn btn-primary">Ok</button>
+							</div>
+						</form>
+						<div th:if="${exception}"  th:text="${exception.message}" class="text-danger"></div>
+				 </div>
+			</div>
+			<div class="panel panel-primary"  th:if="${réserva}" >
+				<div class="panel-heading"> Informations sur les réservation </div>
+				<div class="panel-body">  
+				<div>
+								<label> nom : </label>
+								<label th:text=${réservation.name}></label>
+							 </div>
+						
+							 	
+							 	 <div>
+								<label> mail: </label>
+								<label th:text="${réservation.mail}"></label>
+							 </div>
+							</div>				 
+			   </div>
+			</div> 
+			
+			
+		
+		</div>		
+</body>
+</html>

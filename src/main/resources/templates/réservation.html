@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Réservation</title>
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap1.css"
+th:href="@{/css/bootstrap1.css}"/> 
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+</head>
+<body>
+
+<div layout:fragment="content">
+		<div class="col-md-6"> 
+		
+			<div class="panel panel-primary">
+				<div class="panel-heading"> Consultation les réservation</div>
+				<div class="panel-body">
+						
+						<form th:action="@{/consulterréservation}" methode="get">
+							<div>
+								<label> identifiant réservation: </label>
+								<input type="text" name="idre" th:value="${idre}"/>
+								<button type="submit" class="btn btn-primary">Ok</button>
+							</div>
+						</form>
+						
+				 </div>
+			</div>
+		</div>
+</body>
+</html>

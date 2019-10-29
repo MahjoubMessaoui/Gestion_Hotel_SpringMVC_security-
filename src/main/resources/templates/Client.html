@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" 
+layout:decorator="template1">
+<head>
+<meta charset="utf-8"/>
+<title>Réservation</title>
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap1.css"
+th:href="@{/css/bootstrap1.css}"/> 
+
+
+<link rel="stylesheet" type="text/css" href="../static/css/myStyle.css"
+th:href="@{/css/myStyle.css}"/>
+
+
+
+
+</head>
+<body>
+
+<div layout:fragment="content">
+		<div class="col-md-6"> 
+		
+			<div class="panel panel-primary">
+				<div class="panel-heading"> Consultation d'un compte client</div>
+				<div class="panel-body">
+						
+						<form th:action="@{/consulterClient}" methode="get">
+							<div>
+								<label> identifiant Client: </label>
+								<input type="text" name="idClient" th:value="${idClient}"/>
+								<button type="submit" class="btn btn-primary">Ok</button>
+							</div>
+						</form>
+						<div th:if="${exception}"  th:text="${exception.message}" class="text-danger"></div>
+				 </div>
+			</div>
+			<div class="panel panel-primary"  th:if="${client}" >
+				<div class="panel-heading"> Informations sur le clients</div>
+				<div class="panel-body">  
+				<div>
+								<label> nom : </label>
+								<label th:text="${client.nomClient}"></label>
+							 </div>
+							
+							 <div>
+								<label> prenom : </label>
+								<label th:text="${client.prenomClient}"></label>
+							 </div>
+							 	 <div>
+								<label> addresse : </label>
+								<label th:text="${client.adresseClient}"></label>
+							 </div>
+							 	
+							 	
+							 	 <div>
+								<label> téléphone : </label>
+								<label th:text="${client.phone}"></label>
+							 </div>
+							</div>				 
+			   </div>
+			</div> 
+			
+			
+			<div class="col-md-6">
+			<div class="panel panel-primary"  th:if="${client}">
+				<div class="panel-heading"> Listes des réservation effectuées par le client</div>
+				<div class="panel-body"> 
+					<table class="table table-striped">
+						<tr>
+							<th>nom</th><th>Date</th><th>hotel</th><th>notes</th>
+						</tr>
+					
+					</table>
+					
+					<div class="container">
+						<ul class="nav nav-pills">
+							<li th:each="p,status:${pages}">
+								<a th:href="@{/consulterClient(idClient=${idClient},page=${status.index})}" th:text="${status.index}"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+		   </div>
+		
+		
+		</div>
+	</div> 
+
+
+
+			
+			
+	
+			
+			
+			
+			
+			
+			
+			
+			
+</body>
+</html>
